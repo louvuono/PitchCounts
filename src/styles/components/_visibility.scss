@@ -1,0 +1,53 @@
+.show-for-mobile {
+  @media (min-width: $desktop-breakpoint) {
+    display: none;
+  }
+}
+
+.show-for-desktop {
+  @media (max-width: $desktop-breakpoint - .01rem) {
+    display: none;
+    margin: 0;
+    padding-left: $s-size;
+  }
+}
+
+.list-heading_date {
+  @extend .show-for-desktop;
+  width: 80px;
+}
+
+.list-heading_name {
+  @extend .show-for-desktop;
+  width: 150px;
+}
+
+.list-heading_team {
+  @extend .show-for-desktop;
+  width: 150px;
+}
+
+.list-heading_coach {
+  @extend .show-for-desktop;
+  width: 150px;
+}
+
+.list-heading_pitches {
+  @extend .show-for-desktop;
+  width: 50px;
+}
+
+.list-heading_caught {
+  @extend .show-for-desktop;
+  width: 50px;
+}
+
+.list-heading_avail {
+  @extend .show-for-desktop;
+  width: 80px;
+}
+
+.list-heading_notes {
+  @extend .show-for-desktop;
+  width: 200px;
+}

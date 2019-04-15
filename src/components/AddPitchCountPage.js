@@ -1,0 +1,35 @@
+import React from 'react';
+import PitchCountForm from './PitchCountForm';
+import { connect } from 'react-redux';
+import { startAddPitchCount } from '../actions/pitchcounts';
+
+export class AddPitchCountPage extends React.Component {
+  onSubmit = (pitchcount) => {
+    console.log('Add pitch count');
+    this.props.startAddPitchCount(pitchcount);
+    this.props.history.push('/');
+  };
+  render() {
+    return (
+      <div>
+        <div className="page-header">
+          <div className="content-container">
+            <h1 className="page-header__title">Add Pitch Count</h1>
+          </div>
+        </div>
+        <div className="content-container">
+          <PitchCountForm
+            onSubmit={this.onSubmit}
+          />
+        </div>
+      </div>
+    );
+  }
+}
+
+
+const mapDispatchToProps = (dispatch) =>({
+    startAddPitchCount: (pitchcount) => dispatch(startAddPitchCount(pitchcount))
+});
+
+export default connect(undefined, mapDispatchToProps)(AddPitchCountPage);
