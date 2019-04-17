@@ -23,7 +23,7 @@ export const startAddPitchCount = (pitchCountData = {}) => {
         } = pitchCountData;
         const pitchcount = { date, name, team, age, coach, pitches, catching, notes, nextAvailable };
     
-        return database.ref(`users/${uid}/pitchcounts`).push(pitchcount).then((ref) => {
+        return database.ref(`pitchcounts`).push(pitchcount).then((ref) => {
             dispatch(addPitchCount({
             id: ref.key,
             ...pitchcount
@@ -42,7 +42,7 @@ export const startRemovePitchCount = ({ id } = {}) => {
     return (dispatch, getState) => { 
         const uid = getState().auth.uid;        
         // remove pitch count
-        return database.ref(`users/${uid}/pitchcounts/${id}`).remove().then(() => {
+        return database.ref(`pitchcounts/${id}`).remove().then(() => {
             console.log('Removing pitch count');
             dispatch(removePitchCount({ id }));
         });
@@ -60,7 +60,7 @@ export const startEditPitchCount = (id, updates) => {
     return (dispatch, getState) => { 
         const uid = getState().auth.uid;        
         // edit pitch count
-        return database.ref(`users/${uid}/pitchcounts/${id}`).update(updates).then(() => {
+        return database.ref(`pitchcounts/${id}`).update(updates).then(() => {
             console.log('Updating pitch count');
             dispatch(editPitchCount(id, updates));
         });
@@ -77,7 +77,7 @@ export const startSetPitchCount = () => {
     return (dispatch, getState) => {  
         const uid = getState().auth.uid;       
         // Read pitch count
-        return database.ref(`users/${uid}/pitchcounts`).once('value').then((snapshot) => {
+        return database.ref(`pitchcounts`).once('value').then((snapshot) => {
                 console.log(snapshot.val());
                 const pitchcounts = [];
                 snapshot.forEach((childSnapshot) => {
