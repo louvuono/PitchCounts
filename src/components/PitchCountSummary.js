@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import numeral from 'numeral';
-import selectPitchCounts from '../selectors/PitchCounts';
-import selectPitchCountsTotal from '../selectors/PitchCountsTotal';
+import selectPitchCounts from '../selectors/pitchcounts';
+import selectPitchCountsTotal from '../selectors/pitchcountsTotal';
 
 export const PitchCountSummary = ({ PitchCountCount, PitchCountsTotal }) => {
     return (
