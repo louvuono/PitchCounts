@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Lou Vuono",
   "license": "MIT",
+  "engines": {
+    "yarn": "1.15.2"
+  },
   "scripts": {
     "serve": "live-server public/",
     "build:dev": "webpack",
