@@ -22,6 +22,7 @@ export class PitchCountListFilters extends React.Component {
     };
 
     onSortChange = (e) => {
+        console.log('SORT CHANGE: ' + e.target.value);
         switch (e.target.value) {
             case 'date':
                 this.props.sortByDate();

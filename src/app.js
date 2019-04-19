@@ -38,6 +38,22 @@ ReactDOM.render(<p>Loading... </p>, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+        // User is signed in.
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        var userName = localStorage.getItem('userName');
+
+        // Updates the user attributes:
+        user.updateProfile({
+            displayName: userName
+        }).then(function() {
+            var displayName = user.displayName;
+
+            console.log('User display name is: ' + displayName);
+        }, function(error) {
+            // An error happened.
+        });
+
         console.log('Logged in as user:', user.uid);
         store.dispatch(login(user.uid));
         store.dispatch(startSetPitchCount()).then(() => {
@@ -49,6 +65,9 @@ firebase.auth().onAuthStateChanged((user) => {
     } else {
         console.log('Logged out');
         store.dispatch(logout());
+        localStorage.removeItem('userName');
+        localStorage.removeItem('teamName');
+        localStorage.removeItem('coachName');
         renderApp();
         history.push('/');
     }

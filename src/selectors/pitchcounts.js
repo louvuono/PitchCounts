@@ -6,16 +6,17 @@ export default (pitchcounts, { text, sortBy, startDate, endDate }) => {
     return pitchcounts.filter((pitchcount) => {
         console.log('Selecting pitch counts');
         console.log(pitchcounts);
-        const pitchDate = moment(pitchcount.date);
+        const pitchDate = moment(pitchcount.nextAvailable);
         const startDateMatch = startDate ? startDate.isSameOrBefore(pitchDate, 'day') : true
         const endDateMatch = endDate ? endDate.isSameOrAfter(pitchDate, 'day') : true
-        const textMatch = pitchcount.notes.toLowerCase().includes(text.toLowerCase());
+        const textMatch = pitchcount.name.toLowerCase().includes(text.toLowerCase());
 
-        //return startDateMatch && endDateMatch && textMatch;
-        return startDateMatch && endDateMatch;
+        return startDateMatch && endDateMatch && textMatch;
+        //return startDateMatch && endDateMatch;
     }).sort((a, b) => {
+        console.log('SORTING BY: ' + sortBy);
         if (sortBy === 'date') {
-            return a.date < b.date ? 1 : -1;
+            return a.nextAvailable < b.nextAvailable ? 1 : -1;
         } else if (sortBy === 'team') {
             return a.team < b.team ? 1 : -1;
         } else if (sortBy === 'name') {

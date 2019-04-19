@@ -10,6 +10,8 @@ export const addPitchCount = (pitchcount) => ({
 export const startAddPitchCount = (pitchCountData = {}) => {
     return (dispatch, getState) => {
         const uid = getState().auth.uid;
+        const userName = getState().auth.userName;
+        console.log('Add Pitch Count by: ' + userName);
         const {
             date = 0,
             name = '',
@@ -19,9 +21,11 @@ export const startAddPitchCount = (pitchCountData = {}) => {
             pitches = 0,
             catching = 0,
             notes = '',
-            nextAvailable = 0
+            nextAvailable = 0,
+            createdBy = userName,
+            updatedBy = userName,
         } = pitchCountData;
-        const pitchcount = { date, name, team, age, coach, pitches, catching, notes, nextAvailable };
+        const pitchcount = { date, name, team, age, coach, pitches, catching, notes, nextAvailable, createdBy, updatedBy };
     
         return database.ref(`pitchcounts`).push(pitchcount).then((ref) => {
             dispatch(addPitchCount({
