@@ -9,6 +9,7 @@ export const PitchCountList = (props) => (
         <div className="show-for-mobile">PitchCounts</div>
         <div className="list-heading-date">Date</div>
         <div className="list-heading-name">Player</div>
+        <div className="list-heading-age">Age</div>
         <div className="list-heading-team">Team</div>
         <div className="list-heading-coach">Coach</div>
         <div className="list-heading-pitches">Pitches</div>
@@ -24,7 +25,6 @@ export const PitchCountList = (props) => (
             </div>
           ) : (
               props.pitchcounts.map((pitchcount) => {
-                let warn = 'Red';
                 return <PitchCountListItem key={pitchcount.id} {...pitchcount} />;
               })
             )

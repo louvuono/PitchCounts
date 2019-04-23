@@ -84,6 +84,11 @@
   width: 150px;
 }
 
+.list-item__age {
+  @extend .list-item__data;
+  width: 50px;
+}
+
 .list-item__team {
   @extend .list-item__data;
   width: 150px;

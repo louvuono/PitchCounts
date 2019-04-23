@@ -7,6 +7,7 @@ const PitchCountListItem = ({ id, date, name, team, age, coach, pitches, catchin
   <Link className="list-item" to={`/edit/${id}`}>
     <p className="list-item__date">{moment(date).format('M/D/YYYY')}</p>
     <p className="list-item__name">{name}</p>
+    <p className="list-item__age">{age}</p>
     <p className="list-item__team">{team} </p>
     <p className="list-item__coach">{coach} </p>
     <p className="list-item__pitches">{numeral(pitches).format('0')}</p>

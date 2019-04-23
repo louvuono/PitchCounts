@@ -74,9 +74,11 @@ export class LoginPage extends React.Component {
               <select
                 name="Team/Coaches"
                 className="select"
+                value={this.props.team}
                 required
                 onChange={this.onTeamChange}
               >
+                <option selected value='Select Team/Coach'>Team/Coach</option>
                 <option value={coachList[0]}>{coachList[0]}</option>
                 <option value={coachList[1]}>{coachList[1]}</option>
                 <option value={coachList[2]}>{coachList[2]}</option>
@@ -100,9 +102,14 @@ export class LoginPage extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+      team: state.team
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   startLogin: () => dispatch(startLogin())
 });
 
-export default connect(undefined, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

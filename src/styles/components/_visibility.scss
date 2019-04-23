@@ -22,6 +22,11 @@
   width: 150px;
 }
 
+.list-heading_age {
+  @extend .show-for-desktop;
+  width: 50px;
+}
+
 .list-heading_team {
   @extend .show-for-desktop;
   width: 150px;
