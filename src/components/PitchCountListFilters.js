@@ -5,7 +5,8 @@ import { setTextFilter, sortByTeam, sortByName, sortByDate, setStartDate, setEnd
 
 export class PitchCountListFilters extends React.Component {
     state = {
-        calendarFocused: null
+        calendarFocused: null,
+        sortBy: 'date'
     };
 
     onDatesChange = ({startDate, endDate}) => {
@@ -23,6 +24,7 @@ export class PitchCountListFilters extends React.Component {
 
     onSortChange = (e) => {
         console.log('SORT CHANGE: ' + e.target.value);
+        this.setState(() => ({ sortBy: e.target.value }));
         switch (e.target.value) {
             case 'date':
                 this.props.sortByDate();
@@ -52,7 +54,7 @@ export class PitchCountListFilters extends React.Component {
               <div className="input-group__item">
                 <select
                   className="select"
-                  value={this.props.filters.sortBy}
+                  value={this.state.sortBy}
                   onChange={this.onSortChange}
                 >
                   <option value="date">Date</option>

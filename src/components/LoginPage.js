@@ -5,7 +5,12 @@ import { startLogin } from '../actions/auth';
 export class LoginPage extends React.Component {
   constructor(props) {
     super(props);
-  };  
+
+    this.state = {
+      team: 'Select Team/Coach',
+      error: ''
+    };
+  };
 
   onSubmit = (pitchcount) => {
     console.log('Login');
@@ -34,6 +39,7 @@ export class LoginPage extends React.Component {
 
   onTeamChange = (e) => {
     const teamCoachName = e.target.value;
+    this.setState(() => ({ team: teamCoachName }));
     let res = teamCoachName.split("-");
     let teamName = res[0];
     let coachName = res[1];
@@ -66,36 +72,36 @@ export class LoginPage extends React.Component {
               type="text"
               placeholder="Your name"
               autoFocus
-              required
               className="text-input"
               onChange={this.onUserChange}
-            />
-            <div className="input-group__item">
-              <select
-                name="Team/Coaches"
-                className="select"
-                value={this.props.team}
-                required
-                onChange={this.onTeamChange}
-              >
-                <option selected value='Select Team/Coach'>Team/Coach</option>
-                <option value={coachList[0]}>{coachList[0]}</option>
-                <option value={coachList[1]}>{coachList[1]}</option>
-                <option value={coachList[2]}>{coachList[2]}</option>
-                <option value={coachList[3]}>{coachList[3]}</option>
-                <option value={coachList[4]}>{coachList[4]}</option>
-                <option value={coachList[5]}>{coachList[5]}</option>
-                <option value={coachList[6]}>{coachList[6]}</option>
-                <option value={coachList[7]}>{coachList[7]}</option>
-                <option value={coachList[8]}>{coachList[8]}</option>
-                <option value={coachList[9]}>{coachList[9]}</option>
-                <option value={coachList[10]}>{coachList[10]}</option>
-                <option value={coachList[11]}>{coachList[11]}</option>
-                <option value={coachList[12]}>{coachList[12]}</option>
-                <option value={coachList[13]}>{coachList[13]}</option>
-              </select>
-            </div>
-          <button className="button" onClick={this.onSubmit}>Login</button>
+          />
+          <p>{this.state.team}</p>
+          <select
+              name="Team/Coaches"
+              className="text-input"
+              value={this.state.team}
+              defaultValue="Select Team/Coach"
+              onChange={this.onTeamChange}
+          >
+              <option value={coachList[0]}>{coachList[0]}</option>
+              <option value={coachList[1]}>{coachList[1]}</option>
+              <option value={coachList[2]}>{coachList[2]}</option>
+              <option value={coachList[3]}>{coachList[3]}</option>
+              <option value={coachList[4]}>{coachList[4]}</option>
+              <option value={coachList[5]}>{coachList[5]}</option>
+              <option value={coachList[6]}>{coachList[6]}</option>
+              <option value={coachList[7]}>{coachList[7]}</option>
+              <option value={coachList[8]}>{coachList[8]}</option>
+              <option value={coachList[9]}>{coachList[9]}</option>
+              <option value={coachList[10]}>{coachList[10]}</option>
+              <option value={coachList[11]}>{coachList[11]}</option>
+              <option value={coachList[12]}>{coachList[12]}</option>
+              <option value={coachList[13]}>{coachList[13]}</option>
+          </select>
+          <p>
+            <button className="button" onClick={this.onSubmit}>Login</button>
+          </p>
+          
         </div>
       </div>
     );

@@ -7,15 +7,15 @@ export const PitchCountList = (props) => (
     <div className="content-container">
       <div className="list-header">
         <div className="show-for-mobile">PitchCounts</div>
-        <div className="list-heading-date">Date</div>
-        <div className="list-heading-name">Player</div>
-        <div className="list-heading-age">Age</div>
-        <div className="list-heading-team">Team</div>
-        <div className="list-heading-coach">Coach</div>
-        <div className="list-heading-pitches">Pitches</div>
-        <div className="list-heading-caught">Catching</div>
-        <div className="list-heading-avail">Next Available</div>
-        <div className="list-heading-notes">Notes</div>
+        <p className="list-item-date">Date</p>
+        <p className="list-item-name">Player</p>
+        <p className="list-item-age">Age</p>
+        <p className="list-item-team">Team</p>
+        <p className="list-item-coach">Coach</p>
+        <p className="list-item-pitches">Pitches</p>
+        <p className="list-item-caught">Catching</p>
+        <p className="list-item-avail">Next Available</p>
+        <p className="list-item-notes">Notes</p>
       </div>
       <div className="list-body">
         {
