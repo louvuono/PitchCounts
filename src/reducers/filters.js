@@ -5,6 +5,7 @@ import moment from 'moment';
 const filterDefaultState = {
     text: '',
     sortBy: 'date',
+    filterBy: 'team',
     startDate: moment().startOf('month'),
     endDate: moment().endOf('month')
 };
@@ -15,7 +16,22 @@ export default (state = filterDefaultState, action) => {
         case 'SET_TEXT_FILTER':
             return { 
                 ...state,
-                text: action.text 
+                text: action.text
+            };
+        case 'FILTER_BY_TEAM':
+            return { 
+                ...state,
+                filterBy: 'team'
+            };        
+        case 'FILTER_BY_COACH':
+            return { 
+                ...state,
+                filterBy: 'coach'
+            };
+        case 'FILTER_BY_NAME':
+            return { 
+                ...state,
+                filterBy: 'name'
             };
         case 'SORT_BY_TEAM':
             return {

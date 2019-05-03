@@ -1,6 +1,7 @@
 import React from 'react';
 import { Router, Route, Switch, Link, NavLink } from 'react-router-dom';
-import createHistory from 'history/createBrowserHistory';
+//import createHistory from 'history/createBrowserHistory';
+var createHistory = require("history").createBrowserHistory;
 
 import LoginPage from '../components/LoginPage';
 import PitchCountDashboardPage from '../components/PitchCountDashboardPage';

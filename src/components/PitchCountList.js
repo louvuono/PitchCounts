@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PitchCountListItem from './PitchCountListItem';
+import PitchCountListEditItem from './PitchCountListEditItem';
 import selectPitchCounts from '../selectors/pitchcounts';
 
 export const PitchCountList = (props) => (
@@ -24,9 +25,13 @@ export const PitchCountList = (props) => (
               <span>No PitchCounts</span>
             </div>
           ) : (
+              props.admin === undefined ? (
               props.pitchcounts.map((pitchcount) => {
                 return <PitchCountListItem key={pitchcount.id} {...pitchcount} />;
-              })
+              })) : (
+              props.pitchcounts.map((pitchcount) => {
+                return <PitchCountListEditItem key={pitchcount.id} {...pitchcount} />;
+              }))
             )
         }
       </div>
@@ -35,7 +40,8 @@ export const PitchCountList = (props) => (
 
 const mapStateToProps = (state) => {
     return {
-        pitchcounts: selectPitchCounts(state.pitchcounts, state.filters)
+        pitchcounts: selectPitchCounts(state.pitchcounts, state.filters),
+        admin: state.admin
     };
 };
 

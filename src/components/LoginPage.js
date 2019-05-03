@@ -75,7 +75,6 @@ export class LoginPage extends React.Component {
               className="text-input"
               onChange={this.onUserChange}
           />
-          <p>{this.state.team}</p>
           <select
               name="Team/Coaches"
               className="text-input"
@@ -83,6 +82,7 @@ export class LoginPage extends React.Component {
               defaultValue="Select Team/Coach"
               onChange={this.onTeamChange}
           >
+              <option value="Select Team/Coach">Select Team/Coach</option>
               <option value={coachList[0]}>{coachList[0]}</option>
               <option value={coachList[1]}>{coachList[1]}</option>
               <option value={coachList[2]}>{coachList[2]}</option>

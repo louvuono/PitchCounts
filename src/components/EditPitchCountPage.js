@@ -7,11 +7,11 @@ import { startEditPitchCount, startRemovePitchCount } from '../actions/pitchcoun
 
 export class EditPitchCountPage extends React.Component {
     onSubmit = (pitchcount) => {
-        //this.props.startEditPitchCount(this.props.pitchcount.id, pitchcount);
+        this.props.startEditPitchCount(this.props.pitchcount.id, pitchcount);
         this.props.history.push('/');
     };
     onRemove = () => {
-        //this.props.startRemovePitchCount({ id: this.props.pitchcount.id });
+        this.props.startRemovePitchCount({ id: this.props.pitchcount.id });
         this.props.history.push('/');
     };
     render() {
@@ -24,10 +24,10 @@ export class EditPitchCountPage extends React.Component {
             </div>
             <div className="content-container">
               <PitchCountForm
-                PitchCount={this.props.pitchcount}
+                pitchcount={this.props.pitchcount}
                 onSubmit={this.onSubmit}
               />
-              <button className="button button--secondary" disable onClick={this.onRemove}>Remove Pitch Count</button>
+              <button className="button button--secondary" onClick={this.onRemove}>Remove Pitch Count</button>
             </div>
           </div>
         );

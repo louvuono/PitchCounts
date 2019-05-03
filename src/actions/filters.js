@@ -3,15 +3,27 @@ export const setTextFilter = ( text = '' ) => ({
     text
 });
 
-export const sortByTeam = () => ({
+export const filterByTeam = ( x = '' ) => ({
+    type: 'FILTER_BY_TEAM'
+});
+
+export const filterByCoach = ( x = '' ) => ({
+    type: 'FILTER_BY_COACH'
+});
+
+export const filterByName = ( x = '' ) => ({
+    type: 'FILTER_BY_NAME'
+});
+
+export const sortByTeam = ( x = '' ) => ({
     type: 'SORT_BY_TEAM'
 });
 
-export const sortByName = () => ({
+export const sortByName = ( x = '' ) => ({
     type: 'SORT_BY_NAME'
 });
 
-export const sortByDate = () => ({
+export const sortByDate = ( x = '' ) => ({
     type: 'SORT_BY_DATE'
 });
 

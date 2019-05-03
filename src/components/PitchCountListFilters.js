@@ -1,12 +1,13 @@
 import React from'react';
 import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
-import { setTextFilter, sortByTeam, sortByName, sortByDate, setStartDate, setEndDate } from '../actions/filters';
+import { setTextFilter, filterByTeam, filterByCoach, filterByName, sortByTeam, sortByName, sortByDate, setStartDate, setEndDate } from '../actions/filters';
 
 export class PitchCountListFilters extends React.Component {
     state = {
         calendarFocused: null,
-        sortBy: 'date'
+        sortBy: 'date',
+        filterBy: 'team'
     };
 
     onDatesChange = ({startDate, endDate}) => {
@@ -24,8 +25,9 @@ export class PitchCountListFilters extends React.Component {
 
     onSortChange = (e) => {
         console.log('SORT CHANGE: ' + e.target.value);
-        this.setState(() => ({ sortBy: e.target.value }));
-        switch (e.target.value) {
+        const x = e.target.value;
+        this.setState(() => ({ sortBy: x }));
+        switch (x) {
             case 'date':
                 this.props.sortByDate();
                 break;
@@ -38,15 +40,44 @@ export class PitchCountListFilters extends React.Component {
         }
     };
 
+    onFilterChange = (e) => {
+      console.log('FILTER CHANGE: ' + e.target.value);
+      const x = e.target.value;
+      console.log('FILTER BY: ' + x);
+      this.setState(() => ({ filterBy: x }));
+      switch (x) {
+          case 'name':
+              this.props.filterByName();
+              break;
+          case 'coach':
+              this.props.filterByCoach(x);
+              break;
+          case 'team':
+          default:
+              this.props.filterByTeam();
+      }
+  };
+
     render() {
         return (
           <div className="content-container">
             <div className="input-group">
               <div className="input-group__item">
+                <select
+                  className="select"
+                  value={this.state.filterBy}
+                  onChange={this.onFilterChange}
+                >
+                  <option value="team">Filter by Team</option>
+                  <option value="coach">Filter by Coach</option>
+                  <option value="name">Filter by Name</option>
+                </select>
+              </div>
+              <div className="input-group__item">
                 <input
                   type="text"
                   className="text-input"
-                  placeholder="Search PitchCounts"
+                  placeholder="Filter PitchCounts"
                   value={this.props.filters.text}
                   onChange={this.onTextChange}
                 />
@@ -57,9 +88,9 @@ export class PitchCountListFilters extends React.Component {
                   value={this.state.sortBy}
                   onChange={this.onSortChange}
                 >
-                  <option value="date">Date</option>
-                  <option value="team">Team</option>
-                  <option value="name">Name</option>
+                  <option value="date">Sort by Date</option>
+                  <option value="team">Sort by Team</option>
+                  <option value="name">Sort by Name</option>
                 </select>
               </div>
               <div className="input-group__item">
@@ -81,16 +112,20 @@ export class PitchCountListFilters extends React.Component {
 };
 
 const mapStateToProps = (state) => {
+  console.log('FILTERS = ' + state.filters);
     return {
         filters: state.filters
     };
 };
 
 const mapDispatchToProps = (dispatch) => ({
+    filterByTeam: (x) => dispatch(filterByTeam(x)),
+    filterByCoach: (x) => dispatch(filterByCoach(x)),
+    filterByName: (x) => dispatch(filterByName(x)),
     setTextFilter: (text) => dispatch(setTextFilter(text)),
-    sortByDate: () => dispatch(sortByDate),
-    sortByTeam: () => dispatch(sortByTeam ),
-    sortByName: () => dispatch(sortByName ),
+    sortByDate: (x) => dispatch(sortByDate(x)),
+    sortByTeam: (x) => dispatch(sortByTeam(x)),
+    sortByName: (x) => dispatch(sortByName(x)),
     setStartDate: (startDate) => dispatch(setStartDate(startDate)),
     setEndDate: (endDate) => dispatch(setEndDate(endDate))
 })
