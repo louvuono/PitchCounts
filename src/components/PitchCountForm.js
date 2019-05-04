@@ -13,16 +13,13 @@ console.log(now.format('MMM Do YYYY'));
 export default class PitchCountForm extends React.Component {
     constructor(props) {
         super(props);
-        //console.log('Props:' + props.pitchcount.team);
-        const teamName = localStorage.getItem('teamName');
-        const coachName = localStorage.getItem('coachName');
-
+        
         this.state = {
             date: props.pitchcount ? moment(props.pitchcount.date) : moment(),
             name: props.pitchcount ? props.pitchcount.name : '',
-            team: props.pitchcount ? props.pitchcount.team : teamName,
+            team: props.pitchcount ? props.pitchcount.team : props.teamName,
             age: props.pitchcount ? props.pitchcount.age : '',
-            coach: props.pitchcount ? props.pitchcount.coach : coachName,
+            coach: props.pitchcount ? props.pitchcount.coach : props.coachName,
             pitches: props.pitchcount ? props.pitchcount.pitches : '',
             catching: props.pitchcount ? props.pitchcount.catching : '',
             nextAvailable: props.pitchcount ? moment(props.pitchcount.nextAvailable) : moment(),

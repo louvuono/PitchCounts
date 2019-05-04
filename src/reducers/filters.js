@@ -11,7 +11,6 @@ const filterDefaultState = {
 };
 
 export default (state = filterDefaultState, action) => {
-    console.log('ACTION TYPE: ' + action.type);
     switch (action.type) {
         case 'SET_TEXT_FILTER':
             return { 

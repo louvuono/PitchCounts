@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startLogin } from '../actions/auth';
+import { startLogin, setAdmin, setTeamCoach } from '../actions/auth';
 
 export class LoginPage extends React.Component {
   constructor(props) {
@@ -8,19 +8,23 @@ export class LoginPage extends React.Component {
 
     this.state = {
       team: 'Select Team/Coach',
+      teamName: '',
+      coachName:  '',
+      admin: false,
+      userName: '',
       error: ''
     };
   };
 
   onSubmit = (pitchcount) => {
     console.log('Login');
-    if (localStorage.getItem('userName') === null) {
+    if (this.state.userName === null) {
       alert('Please enter your name');
     }
-    else if (localStorage.getItem('teamName') === null) {
+    else if (this.state.teamName === null) {
       alert('Please select team/coach');
     }
-    else if (localStorage.getItem('coachName') === null) {
+    else if (this.state.coachName === null) {
       alert('Please select team/coach');
     }
     else {
@@ -33,8 +37,11 @@ export class LoginPage extends React.Component {
     const userName = e.target.value;
     console.log('User is ' + userName);
     this.setState(() => ({ userName }));
-    localStorage.setItem('userName', userName);
-    console.log('User Name in Local:' + localStorage.getItem('userName'));
+    if (userName === '*ADMIN*') {
+      this.props.setAdmin(true);
+    } else {
+      this.props.setAdmin(false);
+    }
   };
 
   onTeamChange = (e) => {
@@ -43,11 +50,7 @@ export class LoginPage extends React.Component {
     let res = teamCoachName.split("-");
     let teamName = res[0];
     let coachName = res[1];
-    console.log('Team is ' +teamName);
-    localStorage.setItem('teamName', teamName);
-    console.log('Team Name in Local:' + localStorage.getItem('teamName'));
-    localStorage.setItem('coachName', coachName);
-    console.log('Coach Name in Local:' + localStorage.getItem('coachName'));
+    this.props.setTeamCoach(teamName, coachName);
   };
 
   render() {
@@ -57,11 +60,6 @@ export class LoginPage extends React.Component {
       "Majors-Fitzpatrick", "Majors-Kirsch", "Majors-Staudenmeyer", "Majors-Young/Skillman",
       "Travel 9-McArdle", "Travel 10-Adair", "Travel 11-Herrera", "Travel 12-Staudenmeyer"
     ];
-
-    let userName = localStorage.getItem('coachName');
-    if (userName === null) {
-      userName = 'Select team/coach';
-    }
 
     return (
       <div className="box-layout">
@@ -110,12 +108,17 @@ export class LoginPage extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-      team: state.team
+      team: state.team,
+      auth: state.auth,
+      teamName: state.teamName,
+      coachName: state.coachName
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  startLogin: () => dispatch(startLogin())
+  startLogin: () => dispatch(startLogin()),
+  setAdmin: (isAdmin) => dispatch(setAdmin(isAdmin)),
+  setTeamCoach: (team, coach) => dispatch(setTeamCoach(team, coach))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

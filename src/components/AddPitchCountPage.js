@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import { startAddPitchCount } from '../actions/pitchcounts';
 
 export class AddPitchCountPage extends React.Component {
+  constructor(props) {
+    super(props);
+  };
+
   onSubmit = (pitchcount) => {
     console.log('Add pitch count');
     this.props.startAddPitchCount(pitchcount);
@@ -18,7 +22,9 @@ export class AddPitchCountPage extends React.Component {
           </div>
         </div>
         <div className="content-container">
-          <PitchCountForm
+          <PitchCountForm 
+            teamName={this.props.teamName}
+            coachName={this.props.coachName}
             onSubmit={this.onSubmit}
           />
         </div>
@@ -27,9 +33,16 @@ export class AddPitchCountPage extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+      admin: state.auth.admin,
+      teamName: state.auth.teamName,
+      coachName: state.auth.coachName
+  };
+};
 
 const mapDispatchToProps = (dispatch) =>({
     startAddPitchCount: (pitchcount) => dispatch(startAddPitchCount(pitchcount))
 });
 
-export default connect(undefined, mapDispatchToProps)(AddPitchCountPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AddPitchCountPage);

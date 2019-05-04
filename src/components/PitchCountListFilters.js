@@ -24,7 +24,6 @@ export class PitchCountListFilters extends React.Component {
     };
 
     onSortChange = (e) => {
-        console.log('SORT CHANGE: ' + e.target.value);
         const x = e.target.value;
         this.setState(() => ({ sortBy: x }));
         switch (x) {
@@ -41,9 +40,7 @@ export class PitchCountListFilters extends React.Component {
     };
 
     onFilterChange = (e) => {
-      console.log('FILTER CHANGE: ' + e.target.value);
       const x = e.target.value;
-      console.log('FILTER BY: ' + x);
       this.setState(() => ({ filterBy: x }));
       switch (x) {
           case 'name':
@@ -112,7 +109,6 @@ export class PitchCountListFilters extends React.Component {
 };
 
 const mapStateToProps = (state) => {
-  console.log('FILTERS = ' + state.filters);
     return {
         filters: state.filters
     };

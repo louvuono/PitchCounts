@@ -25,12 +25,12 @@ export const PitchCountList = (props) => (
               <span>No PitchCounts</span>
             </div>
           ) : (
-              props.admin === undefined ? (
-              props.pitchcounts.map((pitchcount) => {
-                return <PitchCountListItem key={pitchcount.id} {...pitchcount} />;
-              })) : (
+              props.admin === true ? (
               props.pitchcounts.map((pitchcount) => {
                 return <PitchCountListEditItem key={pitchcount.id} {...pitchcount} />;
+              })) : (
+              props.pitchcounts.map((pitchcount) => {
+                return <PitchCountListItem key={pitchcount.id} {...pitchcount} />;
               }))
             )
         }
@@ -41,7 +41,7 @@ export const PitchCountList = (props) => (
 const mapStateToProps = (state) => {
     return {
         pitchcounts: selectPitchCounts(state.pitchcounts, state.filters),
-        admin: state.admin
+        admin: state.auth.admin
     };
 };
 

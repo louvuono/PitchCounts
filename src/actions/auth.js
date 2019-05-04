@@ -26,3 +26,14 @@ export const startLogout= () => {
         return firebase.auth().signOut();
     };
 }
+
+export const setAdmin = (isAdmin) => ({
+    type: 'ADMIN',
+    admin: isAdmin
+});
+
+export const setTeamCoach = (team, coach) => ({
+    type: 'TEAM_COACH',
+    teamName: team,
+    coachName: coach
+});
