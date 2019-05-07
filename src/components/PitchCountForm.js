@@ -68,6 +68,10 @@ export default class PitchCountForm extends React.Component {
         this.setState(() => ({ calendarFocused: focused}))
     };
 
+    onCancel = ({}) => {
+        this.props.onCancel();
+    };
+
     onSubmit = (e) => {
         e.preventDefault();
 
@@ -100,7 +104,9 @@ export default class PitchCountForm extends React.Component {
             errorMsg = 'Please provide player\'s pitch count';
         } else if (this.state.catching < 0) {
             errorMsg = 'Please provide player\'s innings caught';
-        } 
+        } else if (this.state.date > now.date()) {
+            errorMsg = 'Date selected in in the future, please correct';
+        }
         
         if (this.state.age < 9 && this.state.pitches > 50) {
             warningMsg = 'Over 50 pitch max';
@@ -115,6 +121,8 @@ export default class PitchCountForm extends React.Component {
         } else if (this.state.catching > 3 && this.state.pitches > 0) {
             warningMsg = 'Caught more than 3 innings and pitched';
         }  
+
+        const nextDate = moment(this.state.date).add(next, 'days').valueOf();
         
         if (errorMsg == '') {
             console.log('Submitted');
@@ -127,7 +135,7 @@ export default class PitchCountForm extends React.Component {
                 pitches: this.state.pitches,
                 catching: this.state.catching,
                 notes: warningMsg,
-                nextAvailable: moment(this.state.date).add(next, 'days').valueOf(),
+                nextAvailable: nextDate,
                 createdBy: firebase.auth().currentUser.displayName,
                 updatedBy: firebase.auth().currentUser.displayName,
             });
@@ -139,7 +147,7 @@ export default class PitchCountForm extends React.Component {
 
     render() {
         return (
-          <form className="form" onSubmit={this.onSubmit}>
+          <form className="form" onSubmit={this.onSubmit}> 
             {this.state.error && <p className="form__error">{this.state.error}</p>}
             <SingleDatePicker
               date={this.state.date}
@@ -200,6 +208,7 @@ export default class PitchCountForm extends React.Component {
             />
             <div>
               <button className="button">Save PitchCount Data</button>
+              <button className="button" onClick={this.onCancel}>Cancel</button>
             </div>
           </form>
         )

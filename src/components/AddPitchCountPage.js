@@ -13,6 +13,11 @@ export class AddPitchCountPage extends React.Component {
     this.props.startAddPitchCount(pitchcount);
     this.props.history.push('/');
   };
+
+  onCancel = () => {
+    this.props.history.push('/');
+  };
+
   render() {
     return (
       <div>
@@ -26,6 +31,8 @@ export class AddPitchCountPage extends React.Component {
             teamName={this.props.teamName}
             coachName={this.props.coachName}
             onSubmit={this.onSubmit}
+            onCancel={this.onCancel}
+            on
           />
         </div>
       </div>
