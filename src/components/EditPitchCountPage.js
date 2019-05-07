@@ -14,6 +14,11 @@ export class EditPitchCountPage extends React.Component {
         this.props.startRemovePitchCount({ id: this.props.pitchcount.id });
         this.props.history.push('/');
     };
+
+    onCancel = () => {
+        this.props.history.push('/');
+    };
+
     render() {
         return (
           <div>
@@ -28,6 +33,7 @@ export class EditPitchCountPage extends React.Component {
                 onSubmit={this.onSubmit}
               />
               <button className="button button--secondary" onClick={this.onRemove}>Remove Pitch Count</button>
+              <button className="button button--secondary" onClick={this.onCancel}>Cancel</button>
             </div>
           </div>
         );

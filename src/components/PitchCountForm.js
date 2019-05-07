@@ -208,7 +208,6 @@ export default class PitchCountForm extends React.Component {
             />
             <div>
               <button className="button">Save PitchCount Data</button>
-              <button className="button" onClick={this.onCancel}>Cancel</button>
             </div>
           </form>
         )

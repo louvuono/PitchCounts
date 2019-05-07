@@ -31,9 +31,9 @@ export class AddPitchCountPage extends React.Component {
             teamName={this.props.teamName}
             coachName={this.props.coachName}
             onSubmit={this.onSubmit}
-            onCancel={this.onCancel}
             on
           />
+          <button className="button button--secondary" onClick={this.onCancel}>Cancel</button>
         </div>
       </div>
     );
