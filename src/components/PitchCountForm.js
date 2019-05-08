@@ -105,6 +105,7 @@ export default class PitchCountForm extends React.Component {
         } else if (this.state.catching < 0) {
             errorMsg = 'Please provide player\'s innings caught';
         } else if (this.state.date > now.date()) {
+            console.log('Dates: ' + this.state.date.valueOf() + '   ' + now.date().valueOf())
             errorMsg = 'Date selected in in the future, please correct';
         }
         
