@@ -190,7 +190,7 @@ export default class PitchCountForm extends React.Component {
             />
             <input
               type="number"
-              placeholder="Pitches"
+              placeholder="Pitches - enter pitch number of the first pitch to last batter faced"
               min="0"
               max="120"
               className="number-input"
