@@ -4,9 +4,6 @@ import { SingleDatePicker } from 'react-dates';
 import { firebase } from '../firebase/firebase';
 
 
-
-//const date = new Date();
-
 const now = moment();
 console.log(now.format('MMM Do YYYY'));
 
