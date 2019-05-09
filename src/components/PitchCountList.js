@@ -11,7 +11,7 @@ export const PitchCountList = (props) => (
       <p className="list-item-date">Date</p>
       <p className="list-item-name">Player</p>
       <p className="list-item-age">Age</p>
-      <p className="list-item-team">Team</p>
+      <p className="list-item-team">Division</p>
       <p className="list-item-coach">Coach</p>
       <p className="list-item-pitches">Pitches</p>
       <p className="list-item-caught">Catching</p>

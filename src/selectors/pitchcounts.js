@@ -9,7 +9,7 @@ export default (pitchcounts, { text, filterBy, sortBy, startDate, endDate }) => 
         const endDateMatch = endDate ? endDate.isSameOrAfter(pitchDate, 'day') : true
         let textMatch = false;
         switch (filterBy) {
-            case 'team':
+            case 'division':
                 textMatch = pitchcount.team.toLowerCase().includes(text.toLowerCase());
                 break;
             case 'coach':
@@ -26,7 +26,7 @@ export default (pitchcounts, { text, filterBy, sortBy, startDate, endDate }) => 
     }).sort((a, b) => {
         if (sortBy === 'date') {
             return a.nextAvailable < b.nextAvailable ? 1 : -1;
-        } else if (sortBy === 'team') {
+        } else if (sortBy === 'division') {
             return a.team > b.team ? 1 : -1;
         } else if (sortBy === 'name') {
             return a.name > b.name ? 1 : -1;

@@ -7,7 +7,7 @@ export class PitchCountListFilters extends React.Component {
     state = {
         calendarFocused: null,
         sortBy: 'date',
-        filterBy: 'team'
+        filterBy: 'division'
     };
 
     onDatesChange = ({startDate, endDate}) => {
@@ -30,7 +30,7 @@ export class PitchCountListFilters extends React.Component {
             case 'date':
                 this.props.sortByDate();
                 break;
-            case 'team':
+            case 'division':
                 this.props.sortByTeam();
                 break;
             case 'name':
@@ -65,7 +65,7 @@ export class PitchCountListFilters extends React.Component {
                   value={this.state.filterBy}
                   onChange={this.onFilterChange}
                 >
-                  <option value="team">Filter by Team</option>
+                  <option value="division">Filter by Division</option>
                   <option value="coach">Filter by Coach</option>
                   <option value="name">Filter by Name</option>
                 </select>
@@ -86,7 +86,7 @@ export class PitchCountListFilters extends React.Component {
                   onChange={this.onSortChange}
                 >
                   <option value="date">Sort by Date</option>
-                  <option value="team">Sort by Team</option>
+                  <option value="division">Sort by Division</option>
                   <option value="name">Sort by Name</option>
                 </select>
               </div>

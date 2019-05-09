@@ -33,6 +33,7 @@ export class EditPitchCountPage extends React.Component {
                 onSubmit={this.onSubmit}
               />
               <button className="button button--secondary" onClick={this.onRemove}>Remove Pitch Count</button>
+              <br></br>
               <button className="button button--secondary" onClick={this.onCancel}>Cancel</button>
             </div>
           </div>

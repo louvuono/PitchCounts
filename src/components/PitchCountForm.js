@@ -95,7 +95,7 @@ export default class PitchCountForm extends React.Component {
         } else if (!this.state.name) {
             errorMsg = 'Please provide player\'s name';
         } else if (!this.state.team) {
-            errorMsg = 'Please provide player\'s team';
+            errorMsg = 'Please provide player\'s division';
         } else if (this.state.age < 7 || this.state.age > 13)  {
             errorMsg = 'Please provide player\'s age';
         } else if (!this.state.coach) {
@@ -104,8 +104,10 @@ export default class PitchCountForm extends React.Component {
             errorMsg = 'Please provide player\'s pitch count';
         } else if (this.state.catching < 0) {
             errorMsg = 'Please provide player\'s innings caught';
-        } else if (this.state.date > now.date()) {
+        } else if (this.state.date.dayOfYear().valueOf() > now.dayOfYear().valueOf()) {
             errorMsg = 'Date selected in in the future, please correct';
+        } else if (this.state.date.year().valueOf() != now.year().valueOf()) {
+            errorMsg = 'Date selected not for this year, please correct';
         }
         
         if (this.state.age < 9 && this.state.pitches > 50) {

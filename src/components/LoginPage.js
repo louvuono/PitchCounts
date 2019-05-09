@@ -7,7 +7,7 @@ export class LoginPage extends React.Component {
     super(props);
 
     this.state = {
-      team: 'Select Team/Coach',
+      team: 'Select Division/Coach',
       teamName: '',
       coachName:  '',
       admin: false,
@@ -22,10 +22,10 @@ export class LoginPage extends React.Component {
       alert('Please enter your name');
     }
     else if (this.state.teamName === null) {
-      alert('Please select team/coach');
+      alert('Please select division/coach');
     }
     else if (this.state.coachName === null) {
-      alert('Please select team/coach');
+      alert('Please select division/coach');
     }
     else {
       this.props.startLogin();
@@ -77,10 +77,10 @@ export class LoginPage extends React.Component {
               name="Team/Coaches"
               className="text-input"
               value={this.state.team}
-              defaultValue="Select Team/Coach"
+              defaultValue="Select Division/Coach"
               onChange={this.onTeamChange}
           >
-              <option value="Select Team/Coach">Select Team/Coach</option>
+              <option value="Select Division/Coach">Select Division/Coach</option>
               <option value={coachList[0]}>{coachList[0]}</option>
               <option value={coachList[1]}>{coachList[1]}</option>
               <option value={coachList[2]}>{coachList[2]}</option>

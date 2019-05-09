@@ -5,7 +5,7 @@ import moment from 'moment';
 const filterDefaultState = {
     text: '',
     sortBy: 'date',
-    filterBy: 'team',
+    filterBy: 'division',
     startDate: moment().startOf('month'),
     endDate: moment().endOf('month')
 };
@@ -20,7 +20,7 @@ export default (state = filterDefaultState, action) => {
         case 'FILTER_BY_TEAM':
             return { 
                 ...state,
-                filterBy: 'team'
+                filterBy: 'division'
             };        
         case 'FILTER_BY_COACH':
             return { 
@@ -35,7 +35,7 @@ export default (state = filterDefaultState, action) => {
         case 'SORT_BY_TEAM':
             return {
                 ...state,
-                sortBy: 'team'
+                sortBy: 'division'
             };
         case 'SORT_BY_DATE':
             return {
